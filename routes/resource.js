@@ -18,13 +18,14 @@ router.post('/flights', flight_controller.flight_create_post);
 router.delete('/flights/:id',flight_controller.flight_delete); 
  
 // PUT request to update Costume. 
-router.put('/flights/:id', 
+router.put('/flights/:id',
 flight_controller.flight_update_put); 
  
 // GET request for one Costume. 
 router.get('/flights/:id', flight_controller.flight_detail);
  
-// GET request for list of all Costume items. 
+// GET request for list of all Costume items.
 router.get('/flights', flight_controller.flight_view_all_Page); 
- 
+
+router.get('/flights/:id', flight_controller.flight_detail); 
 module.exports = router; 
