@@ -11,11 +11,11 @@ exports.flight_list = async function (req, res) {
     res.send(`{"error": ${err}}`);
   }
 };
-
+/*
 // for a specific Flight.
 exports.flight_detail = function (req, res) {
   res.send("NOT IMPLEMENTED: Flight detail: " + req.params.id);
-};
+}; */
 
 // Handle Flight create on POST.
 exports.flight_create_post = function (req, res) {
@@ -36,6 +36,7 @@ exports.flight_update_put = function(req, res) {
 
 exports.flight_view_all_Page = async function (req, res) {
   try {
+      console.log('flight_view_all_Page')
     theFlights = await Flights.find();
     res.render("flight", {
       title: "Flight Search Results",
@@ -47,14 +48,14 @@ exports.flight_view_all_Page = async function (req, res) {
   }
 };
 
-// Handle Costume create on POST.
+// Handle flight create on POST.
 exports.flight_create_post = async function (req, res) {
   console.log(req.body);
   let document = new Flights();
   // We are looking for a body, since POST does not have query parameters.
   // Even though bodies can be in many different formats, we will be picky
   // and require that it be a json object
-  // {"costume_type":"goat", "cost":12, "size":"large"}
+  // {"flight_type":"goat", "cost":12, "size":"large"}
   document.flightType = req.body.flightType;
   console.log(document.flightType);
   document.price = req.body.price;
@@ -110,3 +111,59 @@ exports.flight_delete = async function (req, res) {
     res.send(`{"error": Error deleting ${err}}`);
   }
 };
+
+// Handle a show one view with id specified by query
+exports.flight_view_one_Page = async function (req, res) {
+  console.log("single view for id " + req.query.id);
+  try {
+      console.log('here');
+    result = await Flights.findById(req.query.id);
+    res.render("flightdetail", { title: "Flight Detail", toShow: result });
+  } catch (err) {
+    res.status(500);
+    res.send(`{'error': '${err}'}`);
+  }
+};
+
+ // Handle building the view for creating a flight. 
+// No body, no in path parameter, no query. 
+// Does not need to be async 
+exports.flight_create_Page =  function(req, res) { 
+    console.log("create view") 
+    try{ 
+        res.render('flightcreate', { title: 'Flight Create'}); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+};
+
+// Handle building the view for updating a flight. 
+// query provides the id 
+exports.flight_update_Page =  async function(req, res) { 
+    console.log("update view for item "+req.query.id) 
+    try{ 
+        let result = await Flights.findById(req.query.id) 
+        console.log(result)
+        res.render('flightupdate', { title: 'flight Update', toShow: result }); 
+    }
+    catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+
+// Handle a delete one view with id from query 
+exports.flight_delete_Page = async function(req, res) { 
+    console.log("Delete view for id "  + req.query.id) 
+    try{
+        result = await Flights.findById(req.query.id) 
+        res.render('flightdelete', { title: 'Flight Delete', toShow: 
+result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 

@@ -1,0 +1,22 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let flightid = toShow._id 
+  - let flightType = toShow.flightType 
+  - let price = toShow.price 
+  - let capacity = toShow.capacity 
+  div 
+    div.row 
+      div(class='costumeAttr mr-3') Flight ID is: 
+      div #{flightid} 
+    div.row 
+      div(class='costumeAttr mr-3') Flight Type is: 
+      div #{flightType} 
+    div.row 
+      div(class='costumeAttr mr-3') Flight Size is: 
+      div #{price} 
+    div.row 
+      div(class='costumeAttr mr-3') Flight Capacity is: 
+      div #{capacity}
