@@ -28,12 +28,6 @@ router.get('/flights/:id', flight_controller.flight_view_one_Page);
 // GET request for list of all Costume items.
 router.get('/flights', flight_controller.flight_view_all_Page); 
 
-router.get('/detail', flight_controller.flight_view_one_Page); 
 
-router.get('/create', flight_controller.flight_create_Page); 
-
-router.get('/update',flight_controller.flight_update_Page);
-
-router.get('/delete', flight_controller.flight_delete_Page);
 
 module.exports = router; 

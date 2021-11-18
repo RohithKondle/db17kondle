@@ -118,6 +118,7 @@ exports.flight_view_one_Page = async function (req, res) {
   try {
       console.log('here');
     result = await Flights.findById(req.query.id);
+    console.log(result)
     res.render("flightdetail", { title: "Flight Detail", toShow: result });
   } catch (err) {
     res.status(500);
