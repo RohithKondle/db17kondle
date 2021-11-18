@@ -3,6 +3,14 @@ extends layout
 block content 
   h1= title 
  
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let flightID = toShow._id
+    - let flightType = toShow.flightType
+    - let price = toShow.price
+    - let capacity = toShow.capacity
+
   form(id='FlightForm', action="/resource/flights", method="POST") 
     div.form-group 
         label.costumeAttr(for='flightType') Flight type 
