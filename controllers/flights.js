@@ -36,7 +36,7 @@ exports.flight_update_put = function(req, res) {
 
 exports.flight_view_all_Page = async function (req, res) {
   try {
-      console.log('flight_view_all_Page')
+    console.log('flight_view_all_Page')
     theFlights = await Flights.find();
     res.render("flight", {
       title: "Flight Search Results",
