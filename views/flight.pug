@@ -4,8 +4,8 @@ block content
   h1= title
   - let flights  = results;
   div(class="container-fluid mt-3")
-  div(class="row")
-    each flight,index in flights
+    div(class="row m-1")
+      each flight,index in flights
         - let destination = `dispatch(\"/flights/update?id=${flight._id}\")` 
         div(class="col-sm-4" onclick=`buy(${index})`) #{flight.flightType} - #{flight.price} - #{flight.capacity}
         button.btn( class="btn-primary ml-1", onclick= destination) Update 
