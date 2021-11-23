@@ -23,16 +23,20 @@ a {
     
   }
   .values{
-    margin-right: 2px;
+    margin-right: 20px;
     margin-bottom: 0;
     padding: 10px;
     justify-content:center;
     font-weight: bold;
-    
-    background-color: azure;
-    border-radius: 1px;
+    background-color: bisque;
+    border-radius: 100px;
   }
   .values:hover{
     background-color:chartreuse;
     color: black;
+  }
+
+  .paddingcustom{
+    padding: 10px 10px;
+    justify-content: space-between;
   }

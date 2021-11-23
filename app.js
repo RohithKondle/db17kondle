@@ -48,7 +48,7 @@ async function recreateDB() {
   });
   let instance3 = new Flights({
     flightType: "First Class",
-    price: 30,
+    price: 300,
     capacity: "80 tonns",
   });
   instance3.save(function (err, doc) {

@@ -3,12 +3,18 @@ extends layout
 block content
   h1= title
   - let flights  = results;
-  div(class="container-fluid mt-3")
-    div(class="row m-1")
+  div(class="container-fluid mt-3 mystyle")
+    - let create = `dispatch(\"/flights/create\")`
+    button.btn(class="btn-secondary ml-1", onClick=create) Create New Flight
+    div(class="row m-1 paddingcustom")
       each flight,index in flights
         - let destination = `dispatch(\"/flights/update?id=${flight._id}\")` 
-        div(class="col-sm-4" onclick=`buy(${index})`) #{flight.flightType} - #{flight.price} - #{flight.capacity}
-        button.btn( class="btn-primary ml-1", onclick= destination) Update 
+        - let detail = `dispatch(\"/flights/detail/?id=${flight._id}")`
+        - let deleteItem = `dispatch(\"/flights/delete/?id=${flight._id}")`
+        div(class="col-sm-5 values") #{flight.flightType} - #{flight.price} - #{flight.capacity}
+          button.btn( class="btn-primary buttonCustom", onclick= destination) Update
+          button.btn( class="btn-success buttonCustom", onclick= detail) Details
+          button.btn( class="btn-danger buttonCustom", onclick= deleteItem) Delete
     
     script.
       function buy(itemNo)
@@ -16,5 +22,5 @@ block content
         alert(`You purchased Item ${itemNo+1}`)
       }
       function dispatch(path){ 
-      window.location.href=path 
+        window.location.href=path 
       } 

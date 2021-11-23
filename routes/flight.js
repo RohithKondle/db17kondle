@@ -17,10 +17,10 @@ router.get('/', flight_controlers.flight_view_all_Page);
 
 router.get('/detail', flight_controlers.flight_view_one_Page); 
 
-router.get('/create', flight_controlers.flight_create_Page); 
+router.get('/create',secured, flight_controlers.flight_create_Page); 
 
 router.get('/update',secured,flight_controlers.flight_update_Page);
 
-router.get('/delete', flight_controlers.flight_delete_Page);
+router.get('/delete',secured, flight_controlers.flight_delete_Page);
 
 module.exports = router;    
