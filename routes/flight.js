@@ -5,7 +5,7 @@ var router = express.Router();
 //or 
 // redirect to login. 
 const secured = (req, res, next) => {
-    console.log(req) 
+    console.log(req)
     if (req.user){ 
       return next(); 
     }
@@ -23,4 +23,4 @@ router.get('/update',secured,flight_controlers.flight_update_Page);
 
 router.get('/delete',secured, flight_controlers.flight_delete_Page);
 
-module.exports = router;    
+module.exports = router;
